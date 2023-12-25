@@ -10,9 +10,8 @@
  * @argv: arguments.
  * Return: 0 on success.
  */
-int main(int argc, char *argv[])
+int main(void)
 {
-	int i = 0;
 	char *str;
 	char **strarr;
 	size_t size = 0;
