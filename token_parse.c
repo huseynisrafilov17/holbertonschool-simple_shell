@@ -28,10 +28,10 @@ int delim_counter(char *str)
 char **token_parse(char *str)
 {
 	int delim_count = delim_counter(str);
-	char **strarr;
-	char *token;
+	char **strarr = NULL;
+	char *token = NULL;
 	int token_number = 0;
-	/* I will not add one because of the new line at the end*/
+
 	strarr = malloc(delim_count * sizeof(char *));
 	if (strarr == NULL)
 	{

@@ -12,20 +12,22 @@
  */
 int main(void)
 {
-	char *str;
-	char **strarr;
+	char *str = NULL;
+	char **strarr = NULL;
 	size_t size = 0;
+
 	while (getline(&str, &size, stdin) != EOF)
 	{
+		if (strarr)
+			free(strarr);
 		strarr = token_parse(str);
+		free(str);
 		if (fork() == 0)
-		{
 			execve(strarr[0], strarr, NULL);
-		}
 		else
-		{
 			wait(NULL);
-		}
 	}
+	if (strarr)
+		free(strarr);
 	return (0);
 }
