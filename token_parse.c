@@ -32,7 +32,7 @@ char **token_parse(char *str)
 	char *token = NULL;
 	int token_number = 0;
 
-	strarr = malloc(delim_count * sizeof(char *));
+	strarr = malloc((delim_count + 1) * sizeof(char *));
 	if (strarr == NULL)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't allocate memory.");
@@ -45,5 +45,6 @@ char **token_parse(char *str)
 		token = strtok(NULL, " \n");
 		token_number++;
 	}
+	strarr[token_number] = NULL;
 	return (strarr);
 }

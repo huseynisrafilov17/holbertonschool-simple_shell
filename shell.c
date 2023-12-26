@@ -21,7 +21,6 @@ int main(void)
 		if (strarr)
 			free(strarr);
 		strarr = token_parse(str);
-		free(str);
 		if (fork() == 0)
 			execve(strarr[0], strarr, NULL);
 		else
@@ -29,5 +28,6 @@ int main(void)
 	}
 	if (strarr)
 		free(strarr);
+	free(str);
 	return (0);
 }
