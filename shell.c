@@ -22,7 +22,8 @@ int main(void)
 			free(strarr);
 		strarr = token_parse(str);
 		if (fork() == 0)
-			execve(strarr[0], strarr, NULL);
+			if (strarr[0] != NULL)
+				execve(strarr[0], strarr, NULL);
 		else
 			wait(NULL);
 	}
