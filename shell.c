@@ -15,11 +15,9 @@ int main(void)
 	char *str;
 	char **strarr;
 	size_t size = 0;
-	printf("$ ");
 	while (getline(&str, &size, stdin) != EOF)
 	{
 		strarr = token_parse(str);
-		printf("$ ");
 		if (fork() == 0)
 		{
 			execve(strarr[0], strarr, NULL);
