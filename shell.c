@@ -12,25 +12,24 @@
  */
 int main(void)
 {
-	char *str = NULL;
-	char **strarr = NULL;
+	char *value = getenv("PATH"), *input = NULL, **token_arr = NULL;
 	size_t size = 0;
 
-	while (getline(&str, &size, stdin) != EOF)
+	while (getline(&input, &size, stdin) != EOF)
 	{
-		if (strarr)
-			free(strarr);
-		strarr = token_parse(str);
+		if (token_arr)
+			free(token_arr);
+		token_arr = token_parse(input, " \n\t");
 		if (fork() == 0)
 		{
-			if (strarr[0] != NULL)
-				execve(strarr[0], strarr, NULL);
+			if (token_arr[0] != NULL) /*should be executable*/
+				execvp(token_arr[0], token_arr);
 		}
 		else
 			wait(NULL);
 	}
-	if (strarr)
-		free(strarr);
-	free(str);
+	if (token_arr)
+		free(token_arr);
+	free(input);
 	return (0);
 }

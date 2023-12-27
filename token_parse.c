@@ -8,14 +8,21 @@
  * @str: string.
  * Return: deliminator count.
  */
-int delim_counter(char *str)
+int delim_counter(char *str, char *delim)
 {
-	int i = 1, count = 1;
+	int j = 0, i = 1, count = 1;
 
 	while (str[i] != '\0')
 	{
-		if ((str[i - 1] == ' ' || str[i - 1] == '\n' || str[i - 1] == '\t') && str[i] > 32)
-			count++;
+		while (delim[j] != '\0')
+		{
+			if ((str[i - 1] == delim[j]) && str[i] > 32)
+			{
+				count++;
+				break;
+			}
+			j++;
+		}
 		i++;
 	}
 	return (count);
@@ -23,11 +30,12 @@ int delim_counter(char *str)
 /**
  * token_parse - splits a string.
  * @str: string.
+ * @delim: deliminators.
  * Return: pointer to the array of divided strings.
  */
-char **token_parse(char *str)
+char **token_parse(char *str char *delim)
 {
-	int delim_count = delim_counter(str);
+	int delim_count = delim_counter(str, delim);
 	char **strarr = NULL;
 	char *token = NULL;
 	int token_number = 0;
@@ -38,7 +46,7 @@ char **token_parse(char *str)
 		dprintf(STDERR_FILENO, "Error: Can't allocate memory.");
 		exit(EXIT_FAILURE);
 	}
-	token = strtok(str, " \n\t");
+	token = strtok(str, delim);
 	while (token != NULL)
 	{
 		strarr[token_number] = token;
