@@ -24,7 +24,6 @@ char *check_file(char **path_arr, char *filepath)
 			strcat(file_path, filepath);
 			if (stat(file_path, &st) == 0)
 				return (file_path);
-			printf("%s\n", file_path);
 			i++;
 		}
 	}
