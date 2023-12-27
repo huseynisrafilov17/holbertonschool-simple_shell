@@ -20,13 +20,18 @@ int main(void)
 		if (token_arr)
 			free(token_arr);
 		token_arr = token_parse(input, " \n\t");
-		if (fork() == 0)
+		if (check_file(value, token_arr[0]) == 1)
 		{
-			if (token_arr[0] != NULL) /*should be executable*/
-				execvp(token_arr[0], token_arr);
+			if (fork() == 0)
+			{
+				if (token_arr[0] != NULL) /*should be executable*/
+					execvp(token_arr[0], token_arr);
+			}
+			else
+				wait(NULL);
 		}
 		else
-			wait(NULL);
+			printf("File not found\n");
 	}
 	if (token_arr)
 		free(token_arr);

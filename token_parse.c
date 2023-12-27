@@ -33,7 +33,7 @@ int delim_counter(char *str, char *delim)
  * @delim: deliminators.
  * Return: pointer to the array of divided strings.
  */
-char **token_parse(char *str char *delim)
+char **token_parse(char *str, char *delim)
 {
 	int delim_count = delim_counter(str, delim);
 	char **strarr = NULL;
