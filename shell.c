@@ -4,6 +4,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <stdlib.h>
+#include <string.h>
 /*
  * main - Entry point.
  * @argc: argument count.
@@ -12,22 +13,26 @@
  */
 int main(void)
 {
-	char *input = NULL, **token_arr = NULL, **path_arr = token_parse(getenv("PATH"), ":");
+	int flag = 0;
+	char *input = NULL;
+	char **token_arr = NULL, **path_arr = token_parse(getenv("PATH"), ":");
 	size_t size = 0;
 
 	while (getline(&input, &size, stdin) != -1)
 	{
+		if (token_arr && token_arr[0] && flag)
+			free(token_arr[0]);
 		if (token_arr)
 			free(token_arr);
 		token_arr = token_parse(input, " \n\t");
-		token_arr[0] = check_file(path_arr, token_arr[0]);
+		token_arr[0] = check_file(path_arr, token_arr[0], &flag);
 		if (token_arr[0])
 		{
 			if (fork() == 0)
 			{
 				if (execvp(token_arr[0], token_arr) == -1)
 				{
-					perror("Error: ");
+					perror("Error");
 					exit(EXIT_FAILURE);
 				}
 			}
@@ -35,13 +40,12 @@ int main(void)
 				wait(NULL);
 		}
 		else
-			printf("File not found\n");
+			perror("Erroranan");
 	}
-	if (token_arr)
-	{
+	if (token_arr && token_arr[0] && flag)
 		free(token_arr[0]);
+	if (token_arr)
 		free(token_arr);
-	}
 	if (path_arr)
 		free(path_arr);
 	free(input);
