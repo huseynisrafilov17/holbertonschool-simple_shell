@@ -35,7 +35,7 @@ int delim_counter(char *str, char *delim)
  */
 char **token_parse(char *str, char *delim)
 {
-	int delim_count = delim_counter(str, delim);
+	/* int delim_count = delim_counter(str, delim);*/
 	char **strarr = NULL;
 	char *token = NULL;
 	int token_number = 0;
