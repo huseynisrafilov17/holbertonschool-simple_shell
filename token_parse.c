@@ -40,7 +40,7 @@ char **token_parse(char *str, char *delim)
 	char *token = NULL;
 	int token_number = 0;
 	/*2 places for last token and NULL ending*/
-	strarr = malloc((delim_count + 1) * sizeof(char *));
+	strarr = malloc(50 * sizeof(char *));
 	if (strarr == NULL)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't allocate memory.");

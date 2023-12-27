@@ -3,6 +3,6 @@
 
 int delim_counter(char *str, char *delim);
 char **token_parse(char *str, char *delim);
-int check_file(char *path, char *filepath);
+char *check_file(char **path_arr, char *filepath);
 
 #endif

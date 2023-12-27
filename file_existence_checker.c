@@ -7,26 +7,26 @@
 /**
  * 
  */
-int check_file(char *path, char *filepath)
+char *check_file(char **path_arr, char *filepath)
 {
 	int i = 0;
-	char **path_arr, *file_path = NULL;
+	char *file_path = NULL;
 	struct stat st;
 
 	if (stat(filepath, &st) == 0)
-		return (1);
+		return (filepath);
 	else
 	{
-		path_arr = token_parse(path, ":\n");
 		while (path_arr[i] != NULL)
 		{
 			file_path = strdup(path_arr[i]);
+			strcat(file_path, "/");
 			strcat(file_path, filepath);
 			if (stat(file_path, &st) == 0)
-				return (1);
-			printf("%s\n", path_arr[i]);
+				return (file_path);
+			printf("%s\n", file_path);
 			i++;
 		}
 	}
-	return (0);
+	return (NULL);
 }
