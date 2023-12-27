@@ -25,8 +25,11 @@ int main(void)
 		{
 			if (fork() == 0)
 			{
-				if (token_arr[0] != NULL)
-					execvp(token_arr[0], token_arr);
+				if (execvp(token_arr[0], token_arr) == -1)
+				{
+					perror("Error: ");
+					exit(EXIT_FAILURE);
+				}
 			}
 			else
 				wait(NULL);
@@ -35,8 +38,12 @@ int main(void)
 			printf("File not found\n");
 	}
 	if (token_arr)
+	{
+		free(token_arr[0]);
 		free(token_arr);
-	free(path_arr);
+	}
+	if (path_arr)
+		free(path_arr);
 	free(input);
 	return (0);
 }

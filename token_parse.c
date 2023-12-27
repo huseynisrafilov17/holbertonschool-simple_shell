@@ -23,6 +23,7 @@ int delim_counter(char *str, char *delim)
 			}
 			j++;
 		}
+		j = 0;
 		i++;
 	}
 	return (count);
@@ -35,12 +36,12 @@ int delim_counter(char *str, char *delim)
  */
 char **token_parse(char *str, char *delim)
 {
-	/* int delim_count = delim_counter(str, delim);*/
+	int delim_count = delim_counter(str, delim);
 	char **strarr = NULL;
 	char *token = NULL;
 	int token_number = 0;
 	/*2 places for last token and NULL ending*/
-	strarr = malloc(50 * sizeof(char *));
+	strarr = malloc((delim_count + 2) * sizeof(char *));
 	if (strarr == NULL)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't allocate memory.");
