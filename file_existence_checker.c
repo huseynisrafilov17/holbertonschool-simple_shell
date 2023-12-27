@@ -3,24 +3,28 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <string.h>
+#include <stdio.h>
 /**
  * 
  */
 int check_file(char *path, char *filepath)
 {
-	int flag = 0, i = 0;
-	char **path_arr = token_parse(path, ":"), *file_path = NULL;
+	int i = 0;
+	char **path_arr, *file_path = NULL;
 	struct stat st;
 
 	if (stat(filepath, &st) == 0)
 		return (1);
 	else
 	{
-		while (path_arr[i])
+		path_arr = token_parse(path, ":\n");
+		while (path_arr[i] != NULL)
 		{
-			file_path = strcat(path_arr[i], filepath);
+			file_path = strdup(path_arr[i]);
+			strcat(file_path, filepath);
 			if (stat(file_path, &st) == 0)
 				return (1);
+			printf("%s\n", path_arr[i]);
 			i++;
 		}
 	}

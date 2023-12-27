@@ -39,7 +39,7 @@ char **token_parse(char *str, char *delim)
 	char **strarr = NULL;
 	char *token = NULL;
 	int token_number = 0;
-
+	/*2 places for last token and NULL ending*/
 	strarr = malloc((delim_count + 1) * sizeof(char *));
 	if (strarr == NULL)
 	{
@@ -50,7 +50,7 @@ char **token_parse(char *str, char *delim)
 	while (token != NULL)
 	{
 		strarr[token_number] = token;
-		token = strtok(NULL, " \n");
+		token = strtok(NULL, delim);
 		token_number++;
 	}
 	strarr[token_number] = NULL;
