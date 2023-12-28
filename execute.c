@@ -1,9 +1,5 @@
 #include "main.h"
-#include <stdio.h>
-#include <unistd.h>
 #include <sys/wait.h>
-#include <stdlib.h>
-#include <string.h>
 /**
  * execute - executes a command.
  * @args: arguments and command.
@@ -16,7 +12,7 @@ int execute(char **args, char *filename)
 	int status = 0, child_pid;
 
 	if (strcmp(filename, "exit") == 0)
-		exit(EXIT_SUCCESS);
+		return(status);
 	if (args[0])
 	{
 		child_pid = fork();

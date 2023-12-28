@@ -1,8 +1,4 @@
 #include "main.h"
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <unistd.h>
 /**
  * delim_counter - counts deliminators in the str.
  * @str: string.
