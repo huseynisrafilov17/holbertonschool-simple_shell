@@ -24,7 +24,7 @@ int main(void)
 		if (token_arr)
 			free(token_arr);
 		token_arr = token_parse(input, " \n\t");
-		if (token_arr[0] != NULL && token_arr[0] != "")
+		if (token_arr[0] != NULL && token_arr[0][0] != "\0")
 			token_arr[0] = check_file(path_arr, token_arr[0], &flag);
 		execute(token_arr);
 	}
