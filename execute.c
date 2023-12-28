@@ -4,9 +4,10 @@
 #include <sys/wait.h>
 #include <stdlib.h>
 
-void execute(char **args, char *filename)
+int execute(char **args, char *filename)
 {
-	int *status = NULL, child_pid;
+	int status = 0, child_pid;
+
 	if (args[0])
 	{
 		child_pid = fork();
@@ -21,11 +22,12 @@ void execute(char **args, char *filename)
 			}
 		}
 		else
-			wait(status);
+			wait(&status);
 	}
 	else
 	{
 		dprintf(STDERR_FILENO, "./hsh: 1: %s: not found\n", filename);
-		exit(127);
+		status = 127;
 	}
+	return (status);
 }

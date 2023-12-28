@@ -12,7 +12,7 @@
  */
 int main(void)
 {
-	int flag = 0;
+	int flag = 0, status = 0;
 	char *input = NULL, *filename = NULL;
 	char **token_arr = NULL, **path_arr = token_parse(getenv("PATH"), ":");
 	size_t size = 0;
@@ -28,7 +28,7 @@ int main(void)
 			continue;
 		filename = token_arr[0];
 		token_arr[0] = check_file(path_arr, token_arr[0], &flag);
-		execute(token_arr, filename);
+		status = execute(token_arr, filename);
 	}
 	if (token_arr && token_arr[0] && flag)
 		free(token_arr[0]);
@@ -37,5 +37,5 @@ int main(void)
 	if (path_arr)
 		free(path_arr);
 	free(input);
-	return (0);
+	return (status);
 }
