@@ -20,7 +20,7 @@ char *check_file(char **path_arr, char *filepath, int *flag)
 		return (filepath);
 	}
 	*flag = 1;
-	while (path_arr[i] != NULL)
+	while (path_arr != NULL && path_arr[i] != NULL)
 	{
 		file_path = malloc(strlen(path_arr[i]) + strlen(filepath) + 2);
 		if (file_path == NULL)
