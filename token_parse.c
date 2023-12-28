@@ -37,13 +37,14 @@ int delim_counter(char *str, char *delim)
  */
 char **token_parse(char *str, char *delim)
 {
-	int delim_count = delim_counter(str, delim);
+	int delim_count, token_count = 0;
 	char **strarr = NULL;
 	char *token = NULL;
 	int token_number = 0;
 
 	if (str == NULL || str[0] == '\0')
 		return (NULL);
+	delim_count = delim_counter(str, delim);
 	/*2 places for last token and NULL ending*/
 	strarr = malloc((delim_count + 2) * sizeof(char *));
 	if (strarr == NULL)

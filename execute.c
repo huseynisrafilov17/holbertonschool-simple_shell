@@ -15,7 +15,7 @@ int execute(char **args, char *filename)
 			perror("Error:");
 		else if (child_pid == 0)
 		{
-			if (execve(args[0], args, NULL) == -1)
+			if (execve(args[0], args, environ) == -1)
 			{
 				perror("Error");
 				exit(127);
