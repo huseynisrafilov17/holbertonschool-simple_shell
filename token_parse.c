@@ -11,7 +11,7 @@
  */
 int delim_counter(char *str, char *delim)
 {
-	int j = 0, i = 1, count = 1;
+	int j = 0, i = 1, count = 0;
 
 	while (str[i] != '\0')
 	{

@@ -14,7 +14,7 @@ char *check_file(char **path_arr, char *filepath, int *flag)
 	char *file_path = NULL, *slash = "/";
 	struct stat st;
 
-	if (stat(filepath, &st) == 0)
+	if (stat(filepath, &st) == 0 && delim_counter(filepath, "/") != 0)
 	{
 		*flag = 0;
 		return (filepath);
