@@ -37,10 +37,9 @@ int delim_counter(char *str, char *delim)
  */
 char **token_parse(char *str, char *delim)
 {
-	int delim_count, token_count = 0;
+	int delim_count, token_number = 0;
 	char **strarr = NULL;
 	char *token = NULL;
-	int token_number = 0;
 
 	if (str == NULL || str[0] == '\0')
 		return (NULL);
