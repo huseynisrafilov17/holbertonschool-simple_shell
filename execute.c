@@ -4,7 +4,7 @@
 #include <sys/wait.h>
 #include <stdlib.h>
 
-void execute(char **args)
+void execute(char **args, char *filename)
 {
 	if (args[0])
 	{
@@ -20,5 +20,5 @@ void execute(char **args)
 			wait(NULL);
 	}
 	else
-		dprintf(STDERR_FILENO, "%s: not found.\n", args[0]);
+		dprintf(STDERR_FILENO, "%s: not found.\n", filename);
 }
