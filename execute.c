@@ -6,6 +6,7 @@
 
 void execute(char **args, char *filename)
 {
+	int status;
 	if (args[0])
 	{
 		if (fork() == 0)
@@ -13,12 +14,15 @@ void execute(char **args, char *filename)
 			if (execve(args[0], args, NULL) == -1)
 			{
 				perror("Error");
-				exit(EXIT_FAILURE);
+				exit(status);
 			}
 		}
 		else
-			wait(NULL);
+			wait(&status);
 	}
 	else
-		dprintf(STDERR_FILENO, "%s: not found.\n", filename);
+	{
+		dprintf(STDERR_FILENO, "./hsh: 1: %s: not found.\n", filename);
+		exit(status);
+	}
 }
