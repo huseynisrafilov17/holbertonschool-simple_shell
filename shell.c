@@ -4,7 +4,6 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <stdlib.h>
-#include <string.h>
 /*
  * main - Entry point.
  * @argc: argument count.
@@ -25,22 +24,9 @@ int main(void)
 		if (token_arr)
 			free(token_arr);
 		token_arr = token_parse(input, " \n\t");
-		token_arr[0] = check_file(path_arr, token_arr[0], &flag);
-		if (token_arr[0])
-		{
-			if (fork() == 0)
-			{
-				if (execvp(token_arr[0], token_arr) == -1)
-				{
-					perror("Error");
-					exit(EXIT_FAILURE);
-				}
-			}
-			else
-				wait(NULL);
-		}
-		else
-			perror("Erroranan");
+		if (token_arr[0] != NULL && token_arr[0] != "")
+			token_arr[0] = check_file(path_arr, token_arr[0], &flag);
+		execute(token_arr);
 	}
 	if (token_arr && token_arr[0] && flag)
 		free(token_arr[0]);
