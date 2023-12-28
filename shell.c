@@ -4,11 +4,9 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <stdlib.h>
-/*
+/**
  * main - Entry point.
- * @argc: argument count.
- * @argv: arguments.
- * Return: 0 on success.
+ * Return: status. It can be either 127 or 0 currently.
  */
 int main(void)
 {

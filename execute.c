@@ -3,11 +3,20 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <stdlib.h>
-
+#include <string.h>
+/**
+ * execute - executes a command.
+ * @args: arguments and command.
+ * @filename: original command written by user. We used it,
+ * because if file doesn't exist we return NULL to arg[0].
+ * Return: status.
+ */
 int execute(char **args, char *filename)
 {
 	int status = 0, child_pid;
 
+	if (strcmp(filename, "exit") == 0)
+		exit(EXIT_SUCCESS);
 	if (args[0])
 	{
 		child_pid = fork();

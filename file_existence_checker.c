@@ -6,7 +6,11 @@
 #include <string.h>
 #include <stdlib.h>
 /**
- * 
+ * check_file - checks if a file exists and gives full path if it exists.
+ * @path_arr: split PATH.
+ * @filepath: command written by user.
+ * @flag: We define behaviour of free in main function using this variable.
+ * Return: string pointer to the full path.
  */
 char *check_file(char **path_arr, char *filepath, int *flag)
 {
