@@ -2,7 +2,7 @@
 /**
  * _printenv - prints environment.
  */
-void _printenv()
+void _printenv(void)
 {
 	unsigned int i = 0;
 

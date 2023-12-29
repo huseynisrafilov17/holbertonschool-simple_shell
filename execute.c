@@ -5,6 +5,7 @@
  * @args: arguments and command.
  * @filename: original command written by user. We used it,
  * because if file doesn't exist we return NULL to arg[0].
+ * @status: We return this to main to know status of executed command.
  * Return: status.
  */
 int execute(char **args, char *filename, int *status)
@@ -12,7 +13,7 @@ int execute(char **args, char *filename, int *status)
 	int child_pid;
 
 	if (strcmp(filename, "exit") == 0)
-		return(*status);
+		return (*status);
 	if (strcmp(filename, "env") == 0)
 		_printenv();
 	else if (args[0])
