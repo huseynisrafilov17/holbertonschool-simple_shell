@@ -7,8 +7,8 @@
 int main(void)
 {
 	int flag = 0, status = 0;
-	char *input = NULL, *filename = NULL;
-	char **token_arr = NULL, **path_arr = token_parse(getenv("PATH"), ":");
+	char *input = NULL, *filename = NULL, *path_var = strdup(getenv("PATH"));
+	char **token_arr = NULL, **path_arr = token_parse(path_var, ":");
 	size_t size = 0;
 
 	while (getline(&input, &size, stdin) != -1)
@@ -32,6 +32,8 @@ int main(void)
 		free(token_arr);
 	if (path_arr)
 		free(path_arr);
+	if (path_var)
+		free(path_var);
 	free(input);
 	return (status);
 }
