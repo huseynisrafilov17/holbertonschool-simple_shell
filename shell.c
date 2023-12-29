@@ -22,7 +22,7 @@ int main(void)
 			continue;
 		filename = token_arr[0];
 		token_arr[0] = check_file(path_arr, token_arr[0], &flag);
-		status = execute(token_arr, filename);
+		status = execute(token_arr, filename, &status);
 		if (strcmp(filename, "exit") == 0)
 			break;
 	}

@@ -7,12 +7,12 @@
  * because if file doesn't exist we return NULL to arg[0].
  * Return: status.
  */
-int execute(char **args, char *filename)
+int execute(char **args, char *filename, int *status)
 {
-	int status = 0, child_pid;
+	int child_pid;
 
 	if (strcmp(filename, "exit") == 0)
-		return(status);
+		return(*status);
 	if (args[0])
 	{
 		child_pid = fork();
@@ -27,12 +27,16 @@ int execute(char **args, char *filename)
 			}
 		}
 		else
-			wait(&status);
+		{
+			wait(status);
+			if (WIFEXITED(*status))
+				*status = WEXITSTATUS(*status);
+		}
 	}
 	else
 	{
 		dprintf(STDERR_FILENO, "./hsh: 1: %s: not found\n", filename);
-		status = 127;
+		*status = 127;
 	}
-	return (status);
+	return (*status);
 }
