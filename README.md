@@ -1,13 +1,20 @@
-Project Title
-	Simple Shell project for Holberton Schools.
+# Simple Shell Project
 
-Project Description
-	Simple Shell is simple UNIX command interpreter.
-	It was created using C programming language.
+This project is a simple UNIX command interpreter created using the C programming language for Holberton School.
 
-How to use
-	Run compiler: $ gcc *.c -o s_sh(DEYIS)
-	Run simple shell: $ ./s_sh(DEYIS)
-Authors
-	Huseyn Israfilov
-	Uzeyir Alirzayev
+## How to Use
+
+1. **Compile the Simple Shell:**
+        ```
+        $ gcc *.c -o simple_shell
+        ```
+
+2. **Run Simple Shell:**
+        ```
+        $ ./simple_shell
+        ```
+
+## Authors
+Huseyn Israfilov
+
+Uzeyir Alirzayev

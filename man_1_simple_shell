@@ -1,6 +1,6 @@
 #!/bin/bash
-echo ".\" Manpage for printf
-.TH SIMPLE SHELL 1 "2023-12-30" "Version 0.0.0.1.Open-Beta"
+echo ".\" Manpage for Simple Shell
+.TH "SIMPLE SHELL" 1 "2023-12-30" "Version 0.0.0.1.Open-Beta"
 
 .SH NAME
 simple_shell \- simple UNIX command interpreter.
