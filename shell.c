@@ -1,9 +1,5 @@
 #include "main.h"
-#include <stdio.h>
-#include <unistd.h>
 #include <sys/types.h>
-#include <sys/wait.h>
-#include <stdlib.h>
 /**
  * main - Entry point.
  * Return: status. It can be either 127 or 0 currently.
@@ -27,6 +23,8 @@ int main(void)
 		filename = token_arr[0];
 		token_arr[0] = check_file(path_arr, token_arr[0], &flag);
 		status = execute(token_arr, filename);
+		if (strcmp(filename, "exit") == 0)
+			break;
 	}
 	if (token_arr && token_arr[0] && flag)
 		free(token_arr[0]);

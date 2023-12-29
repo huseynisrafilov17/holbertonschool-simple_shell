@@ -1,10 +1,7 @@
 #include "main.h"
-#include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
-#include <string.h>
-#include <stdlib.h>
 /**
  * check_file - checks if a file exists and gives full path if it exists.
  * @path_arr: split PATH.
