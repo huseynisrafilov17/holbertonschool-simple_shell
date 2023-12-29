@@ -7,10 +7,14 @@
 int main(void)
 {
 	int flag = 0, status = 0;
-	char *input = NULL, *filename = NULL;
-	char **token_arr = NULL, **path_arr = token_parse(getenv("PATH"), ":");
+	char *input = NULL, *filename = NULL, *path = getenv("PATH");
+	char *path_alt = NULL, **token_arr = NULL, **path_arr = NULL;
 	size_t size = 0;
 
+	if (path != NULL && path[0] != '\0')
+		path_alt = strdup(path);
+	if (path_alt)
+		path_arr = token_parse(path_alt, ":");
 	while (getline(&input, &size, stdin) != -1)
 	{
 		if (token_arr && token_arr[0] && flag)
@@ -32,6 +36,7 @@ int main(void)
 		free(token_arr);
 	if (path_arr)
 		free(path_arr);
+	free(path_alt);
 	free(input);
 	return (status);
 }

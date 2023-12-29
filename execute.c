@@ -13,7 +13,9 @@ int execute(char **args, char *filename, int *status)
 
 	if (strcmp(filename, "exit") == 0)
 		return(*status);
-	if (args[0])
+	if (strcmp(filename, "env") == 0)
+		_printenv();
+	else if (args[0])
 	{
 		child_pid = fork();
 		if (child_pid == -1)
